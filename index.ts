@@ -4,7 +4,7 @@ const { resolvers } = require("./resolvers/resolvers")
 const fs = require("fs")
 
 const server = new ApolloServer({
-  typeDefs: gql`${fs.readFileSync(__dirname.concat('/typedefs/schema.graphql'), 'utf8')}`,
+  typeDefs: gql`${fs.readFileSync(__dirname.concat("/typedefs/schema.graphql"), "utf8")}`,
   resolvers,
   context: {
     prisma
