@@ -1,0 +1,16 @@
+{
+  "name": "apollo-server-prisma-starter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/brennanforgues/apollo-server-prisma-starter.git",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server": "^2.2.5",
+    "graphql": "^14.0.2",
+    "prisma-client-lib": "^1.21.1"
+  },
+  "devDependencies": {
+    "ts-node": "^7.0.1",
+    "typescript": "^3.2.1"
+  }
+}

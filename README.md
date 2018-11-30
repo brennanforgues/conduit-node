@@ -5,7 +5,7 @@ Apollo Server starter using Prisma for the data access layer and PostgresQL db
 
 1. Prisma is based on Docker, so you must have docker installed and running:
 
-https://www.docker.com/get-started
+  https://www.docker.com/get-started
 
 2. Download the Prisma CLI:
 
