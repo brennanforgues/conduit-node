@@ -1,4 +1,8 @@
 type User {
   id: ID! @unique
-  name: String!
+  email: String
+  token: String
+  username: String!
+  bio: String
+  image: String
 }
