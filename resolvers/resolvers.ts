@@ -7,27 +7,24 @@ module.exports.resolvers = {
   Mutation: {
     createUser: (root, args, context) => {
       return context.prisma.createUser({
-        email: args.email, 
-        bio: args.bio, 
         username: args.username, 
-        token: args.token, 
-        image: args.image
+        //hashedPassword:args.password.hash() 
       })
     },
-    updateUser: (roots, args, context) => {
-      return context.prisma.updateUser(
-        {data: {
-          email: args.email, 
-          bio: args.bio, 
-          username: args.username, 
-          token: args.token, 
-          image: args.image
-        },
-        where: {id: args.id}
-      })
-    },
-    deleteUser: (root, args, context) => {
-      return context.prisma.deleteUser({id: args.id})
-    },
+    // updateUser: (roots, args, context) => {
+    //   return context.prisma.updateUser(
+    //     {data: {
+    //       email: args.email, 
+    //       bio: args.bio, 
+    //       username: args.username, 
+    //       token: args.token, 
+    //       image: args.image
+    //     },
+    //     where: {id: args.id}
+    //   })
+    // },
+    // deleteUser: (root, args, context) => {
+    //   return context.prisma.deleteUser({id: args.id})
+    // },
   },
 }

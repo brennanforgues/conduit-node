@@ -102,16 +102,10 @@ export interface ClientConstructor<T> {
 export type UserOrderByInput =
   | "id_ASC"
   | "id_DESC"
-  | "email_ASC"
-  | "email_DESC"
-  | "token_ASC"
-  | "token_DESC"
   | "username_ASC"
   | "username_DESC"
-  | "bio_ASC"
-  | "bio_DESC"
-  | "image_ASC"
-  | "image_DESC"
+  | "hashedPassword_ASC"
+  | "hashedPassword_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -120,27 +114,18 @@ export type UserOrderByInput =
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
 export interface UserCreateInput {
-  email?: String;
-  token?: String;
   username: String;
-  bio?: String;
-  image?: String;
+  hashedPassword: String;
 }
 
 export interface UserUpdateInput {
-  email?: String;
-  token?: String;
   username?: String;
-  bio?: String;
-  image?: String;
+  hashedPassword?: String;
 }
 
 export interface UserUpdateManyMutationInput {
-  email?: String;
-  token?: String;
   username?: String;
-  bio?: String;
-  image?: String;
+  hashedPassword?: String;
 }
 
 export interface UserWhereInput {
@@ -158,34 +143,6 @@ export interface UserWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
-  email?: String;
-  email_not?: String;
-  email_in?: String[] | String;
-  email_not_in?: String[] | String;
-  email_lt?: String;
-  email_lte?: String;
-  email_gt?: String;
-  email_gte?: String;
-  email_contains?: String;
-  email_not_contains?: String;
-  email_starts_with?: String;
-  email_not_starts_with?: String;
-  email_ends_with?: String;
-  email_not_ends_with?: String;
-  token?: String;
-  token_not?: String;
-  token_in?: String[] | String;
-  token_not_in?: String[] | String;
-  token_lt?: String;
-  token_lte?: String;
-  token_gt?: String;
-  token_gte?: String;
-  token_contains?: String;
-  token_not_contains?: String;
-  token_starts_with?: String;
-  token_not_starts_with?: String;
-  token_ends_with?: String;
-  token_not_ends_with?: String;
   username?: String;
   username_not?: String;
   username_in?: String[] | String;
@@ -200,34 +157,20 @@ export interface UserWhereInput {
   username_not_starts_with?: String;
   username_ends_with?: String;
   username_not_ends_with?: String;
-  bio?: String;
-  bio_not?: String;
-  bio_in?: String[] | String;
-  bio_not_in?: String[] | String;
-  bio_lt?: String;
-  bio_lte?: String;
-  bio_gt?: String;
-  bio_gte?: String;
-  bio_contains?: String;
-  bio_not_contains?: String;
-  bio_starts_with?: String;
-  bio_not_starts_with?: String;
-  bio_ends_with?: String;
-  bio_not_ends_with?: String;
-  image?: String;
-  image_not?: String;
-  image_in?: String[] | String;
-  image_not_in?: String[] | String;
-  image_lt?: String;
-  image_lte?: String;
-  image_gt?: String;
-  image_gte?: String;
-  image_contains?: String;
-  image_not_contains?: String;
-  image_starts_with?: String;
-  image_not_starts_with?: String;
-  image_ends_with?: String;
-  image_not_ends_with?: String;
+  hashedPassword?: String;
+  hashedPassword_not?: String;
+  hashedPassword_in?: String[] | String;
+  hashedPassword_not_in?: String[] | String;
+  hashedPassword_lt?: String;
+  hashedPassword_lte?: String;
+  hashedPassword_gt?: String;
+  hashedPassword_gte?: String;
+  hashedPassword_contains?: String;
+  hashedPassword_not_contains?: String;
+  hashedPassword_starts_with?: String;
+  hashedPassword_not_starts_with?: String;
+  hashedPassword_ends_with?: String;
+  hashedPassword_not_ends_with?: String;
   AND?: UserWhereInput[] | UserWhereInput;
   OR?: UserWhereInput[] | UserWhereInput;
   NOT?: UserWhereInput[] | UserWhereInput;
@@ -286,33 +229,24 @@ export interface BatchPayloadSubscription
 
 export interface UserPreviousValues {
   id: ID_Output;
-  email?: String;
-  token?: String;
   username: String;
-  bio?: String;
-  image?: String;
+  hashedPassword: String;
 }
 
 export interface UserPreviousValuesPromise
   extends Promise<UserPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  email: () => Promise<String>;
-  token: () => Promise<String>;
   username: () => Promise<String>;
-  bio: () => Promise<String>;
-  image: () => Promise<String>;
+  hashedPassword: () => Promise<String>;
 }
 
 export interface UserPreviousValuesSubscription
   extends Promise<AsyncIterator<UserPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  email: () => Promise<AsyncIterator<String>>;
-  token: () => Promise<AsyncIterator<String>>;
   username: () => Promise<AsyncIterator<String>>;
-  bio: () => Promise<AsyncIterator<String>>;
-  image: () => Promise<AsyncIterator<String>>;
+  hashedPassword: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserEdge {
@@ -356,31 +290,22 @@ export interface UserSubscriptionPayloadSubscription
 
 export interface User {
   id: ID_Output;
-  email?: String;
-  token?: String;
   username: String;
-  bio?: String;
-  image?: String;
+  hashedPassword: String;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
-  email: () => Promise<String>;
-  token: () => Promise<String>;
   username: () => Promise<String>;
-  bio: () => Promise<String>;
-  image: () => Promise<String>;
+  hashedPassword: () => Promise<String>;
 }
 
 export interface UserSubscription
   extends Promise<AsyncIterator<User>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  email: () => Promise<AsyncIterator<String>>;
-  token: () => Promise<AsyncIterator<String>>;
   username: () => Promise<AsyncIterator<String>>;
-  bio: () => Promise<AsyncIterator<String>>;
-  image: () => Promise<AsyncIterator<String>>;
+  hashedPassword: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserConnection {}

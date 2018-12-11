@@ -47,11 +47,8 @@ type Subscription {
 
 type User {
   id: ID!
-  email: String
-  token: String
   username: String!
-  bio: String
-  image: String
+  hashedPassword: String!
 }
 
 type UserConnection {
@@ -61,11 +58,8 @@ type UserConnection {
 }
 
 input UserCreateInput {
-  email: String
-  token: String
   username: String!
-  bio: String
-  image: String
+  hashedPassword: String!
 }
 
 type UserEdge {
@@ -76,16 +70,10 @@ type UserEdge {
 enum UserOrderByInput {
   id_ASC
   id_DESC
-  email_ASC
-  email_DESC
-  token_ASC
-  token_DESC
   username_ASC
   username_DESC
-  bio_ASC
-  bio_DESC
-  image_ASC
-  image_DESC
+  hashedPassword_ASC
+  hashedPassword_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -94,11 +82,8 @@ enum UserOrderByInput {
 
 type UserPreviousValues {
   id: ID!
-  email: String
-  token: String
   username: String!
-  bio: String
-  image: String
+  hashedPassword: String!
 }
 
 type UserSubscriptionPayload {
@@ -120,19 +105,13 @@ input UserSubscriptionWhereInput {
 }
 
 input UserUpdateInput {
-  email: String
-  token: String
   username: String
-  bio: String
-  image: String
+  hashedPassword: String
 }
 
 input UserUpdateManyMutationInput {
-  email: String
-  token: String
   username: String
-  bio: String
-  image: String
+  hashedPassword: String
 }
 
 input UserWhereInput {
@@ -150,34 +129,6 @@ input UserWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  email: String
-  email_not: String
-  email_in: [String!]
-  email_not_in: [String!]
-  email_lt: String
-  email_lte: String
-  email_gt: String
-  email_gte: String
-  email_contains: String
-  email_not_contains: String
-  email_starts_with: String
-  email_not_starts_with: String
-  email_ends_with: String
-  email_not_ends_with: String
-  token: String
-  token_not: String
-  token_in: [String!]
-  token_not_in: [String!]
-  token_lt: String
-  token_lte: String
-  token_gt: String
-  token_gte: String
-  token_contains: String
-  token_not_contains: String
-  token_starts_with: String
-  token_not_starts_with: String
-  token_ends_with: String
-  token_not_ends_with: String
   username: String
   username_not: String
   username_in: [String!]
@@ -192,34 +143,20 @@ input UserWhereInput {
   username_not_starts_with: String
   username_ends_with: String
   username_not_ends_with: String
-  bio: String
-  bio_not: String
-  bio_in: [String!]
-  bio_not_in: [String!]
-  bio_lt: String
-  bio_lte: String
-  bio_gt: String
-  bio_gte: String
-  bio_contains: String
-  bio_not_contains: String
-  bio_starts_with: String
-  bio_not_starts_with: String
-  bio_ends_with: String
-  bio_not_ends_with: String
-  image: String
-  image_not: String
-  image_in: [String!]
-  image_not_in: [String!]
-  image_lt: String
-  image_lte: String
-  image_gt: String
-  image_gte: String
-  image_contains: String
-  image_not_contains: String
-  image_starts_with: String
-  image_not_starts_with: String
-  image_ends_with: String
-  image_not_ends_with: String
+  hashedPassword: String
+  hashedPassword_not: String
+  hashedPassword_in: [String!]
+  hashedPassword_not_in: [String!]
+  hashedPassword_lt: String
+  hashedPassword_lte: String
+  hashedPassword_gt: String
+  hashedPassword_gte: String
+  hashedPassword_contains: String
+  hashedPassword_not_contains: String
+  hashedPassword_starts_with: String
+  hashedPassword_not_starts_with: String
+  hashedPassword_ends_with: String
+  hashedPassword_not_ends_with: String
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]
