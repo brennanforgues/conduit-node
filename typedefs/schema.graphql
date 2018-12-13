@@ -3,11 +3,15 @@ type Query {
 }
 
 type Mutation {
-  createUser(username: String!, password: String!): User!
+  createUser(username: String!, password: String!): AuthPayload!
 }
 
 type User {
   id: ID!
   username: String!
-  hashedPassword: String! 
+}
+
+type AuthPayload {
+  user: User!
+  token: String!
 }
