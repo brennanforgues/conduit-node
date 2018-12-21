@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 
-const APP_SECRET = "GraphQL-is-aw3some"
+const { APP_SECRET, getUserId } = require("./utils")
 
 const createUser = async (root, args, context) => {
   const hashedPassword = await bcrypt.hash(args.password, 10)

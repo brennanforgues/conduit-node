@@ -12,8 +12,11 @@ const resolvers = {
 const server = new ApolloServer({
   typeDefs: gql`${fs.readFileSync(__dirname.concat("/typedefs/schema.graphql"), "utf8")}`,
   resolvers,
-  context: {
-    prisma
+  context: request => {
+    return {
+      ...request,
+      prisma,
+    }
   },
 })
 
