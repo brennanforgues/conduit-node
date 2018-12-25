@@ -193,6 +193,7 @@ export type ArticleWhereUniqueInput = AtLeastOne<{
 
 export type UserWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
+  username?: String;
 }>;
 
 export interface UserCreateOneInput {

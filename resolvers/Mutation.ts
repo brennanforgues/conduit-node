@@ -32,7 +32,27 @@ const createArticle = async (root , args, context) => {
   })
 }
 
+const login = async (root, args, context) => {
+  const user = await context.prisma.user({ username: args.username })
+  if (!user) {
+    throw new Error("No such user found")
+  } 
+
+  const valid = await bcrypt.compare(args.password, user.hashedPassword)
+  if (!valid) {
+    throw new Error("Invalid password")
+  }
+
+  const token = jwt.sign({ userId: user.id }, APP_SECRET)
+
+  return {
+    token,
+    user,
+  }
+}
+
 module.exports = {
+  login,
   createUser,
   createArticle,
 }

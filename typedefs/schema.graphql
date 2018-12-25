@@ -3,6 +3,7 @@ type Query {
 }
 
 type Mutation {
+  login(username: String!, password: String!): AuthPayload!
   createUser(username: String!, password: String!): AuthPayload!
   createArticle(
     title: String!, 
