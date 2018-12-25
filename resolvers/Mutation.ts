@@ -18,6 +18,15 @@ const createUser = async (root, args, context) => {
   }
 }
 
+const createArticle = async (root , args, context) => {
+  const userId = getUserId(context)
+  return context.prisma.createArticle({
+    title: args.title, 
+    author: { connect: { id: userId } },
+  })
+}
+
 module.exports = {
   createUser,
+  createArticle,
 }

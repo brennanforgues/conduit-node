@@ -1,5 +1,113 @@
-export const typeDefs = /* GraphQL */ `type AggregateUser {
+export const typeDefs = /* GraphQL */ `type AggregateArticle {
   count: Int!
+}
+
+type AggregateUser {
+  count: Int!
+}
+
+type Article {
+  id: ID!
+  title: String!
+  author: User!
+}
+
+type ArticleConnection {
+  pageInfo: PageInfo!
+  edges: [ArticleEdge]!
+  aggregate: AggregateArticle!
+}
+
+input ArticleCreateInput {
+  title: String!
+  author: UserCreateOneInput!
+}
+
+type ArticleEdge {
+  node: Article!
+  cursor: String!
+}
+
+enum ArticleOrderByInput {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ArticlePreviousValues {
+  id: ID!
+  title: String!
+}
+
+type ArticleSubscriptionPayload {
+  mutation: MutationType!
+  node: Article
+  updatedFields: [String!]
+  previousValues: ArticlePreviousValues
+}
+
+input ArticleSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ArticleWhereInput
+  AND: [ArticleSubscriptionWhereInput!]
+  OR: [ArticleSubscriptionWhereInput!]
+  NOT: [ArticleSubscriptionWhereInput!]
+}
+
+input ArticleUpdateInput {
+  title: String
+  author: UserUpdateOneRequiredInput
+}
+
+input ArticleUpdateManyMutationInput {
+  title: String
+}
+
+input ArticleWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  author: UserWhereInput
+  AND: [ArticleWhereInput!]
+  OR: [ArticleWhereInput!]
+  NOT: [ArticleWhereInput!]
+}
+
+input ArticleWhereUniqueInput {
+  id: ID
 }
 
 type BatchPayload {
@@ -9,6 +117,12 @@ type BatchPayload {
 scalar Long
 
 type Mutation {
+  createArticle(data: ArticleCreateInput!): Article!
+  updateArticle(data: ArticleUpdateInput!, where: ArticleWhereUniqueInput!): Article
+  updateManyArticles(data: ArticleUpdateManyMutationInput!, where: ArticleWhereInput): BatchPayload!
+  upsertArticle(where: ArticleWhereUniqueInput!, create: ArticleCreateInput!, update: ArticleUpdateInput!): Article!
+  deleteArticle(where: ArticleWhereUniqueInput!): Article
+  deleteManyArticles(where: ArticleWhereInput): BatchPayload!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
@@ -35,6 +149,9 @@ type PageInfo {
 }
 
 type Query {
+  article(where: ArticleWhereUniqueInput!): Article
+  articles(where: ArticleWhereInput, orderBy: ArticleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Article]!
+  articlesConnection(where: ArticleWhereInput, orderBy: ArticleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ArticleConnection!
   user(where: UserWhereUniqueInput!): User
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
@@ -42,6 +159,7 @@ type Query {
 }
 
 type Subscription {
+  article(where: ArticleSubscriptionWhereInput): ArticleSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }
 
@@ -60,6 +178,11 @@ type UserConnection {
 input UserCreateInput {
   username: String!
   hashedPassword: String!
+}
+
+input UserCreateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
 }
 
 type UserEdge {
@@ -104,6 +227,11 @@ input UserSubscriptionWhereInput {
   NOT: [UserSubscriptionWhereInput!]
 }
 
+input UserUpdateDataInput {
+  username: String
+  hashedPassword: String
+}
+
 input UserUpdateInput {
   username: String
   hashedPassword: String
@@ -112,6 +240,18 @@ input UserUpdateInput {
 input UserUpdateManyMutationInput {
   username: String
   hashedPassword: String
+}
+
+input UserUpdateOneRequiredInput {
+  create: UserCreateInput
+  update: UserUpdateDataInput
+  upsert: UserUpsertNestedInput
+  connect: UserWhereUniqueInput
+}
+
+input UserUpsertNestedInput {
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
 }
 
 input UserWhereInput {
