@@ -9,6 +9,12 @@ type AggregateUser {
 type Article {
   id: ID!
   title: String!
+  slug: String
+  description: String
+  body: String
+  tagList: [String!]!
+  favorited: Boolean
+  favoritesCount: Int
   author: User!
 }
 
@@ -20,7 +26,17 @@ type ArticleConnection {
 
 input ArticleCreateInput {
   title: String!
+  slug: String
+  description: String
+  body: String
+  tagList: ArticleCreatetagListInput
+  favorited: Boolean
+  favoritesCount: Int
   author: UserCreateOneInput!
+}
+
+input ArticleCreatetagListInput {
+  set: [String!]
 }
 
 type ArticleEdge {
@@ -33,6 +49,16 @@ enum ArticleOrderByInput {
   id_DESC
   title_ASC
   title_DESC
+  slug_ASC
+  slug_DESC
+  description_ASC
+  description_DESC
+  body_ASC
+  body_DESC
+  favorited_ASC
+  favorited_DESC
+  favoritesCount_ASC
+  favoritesCount_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -42,6 +68,12 @@ enum ArticleOrderByInput {
 type ArticlePreviousValues {
   id: ID!
   title: String!
+  slug: String
+  description: String
+  body: String
+  tagList: [String!]!
+  favorited: Boolean
+  favoritesCount: Int
 }
 
 type ArticleSubscriptionPayload {
@@ -64,11 +96,27 @@ input ArticleSubscriptionWhereInput {
 
 input ArticleUpdateInput {
   title: String
+  slug: String
+  description: String
+  body: String
+  tagList: ArticleUpdatetagListInput
+  favorited: Boolean
+  favoritesCount: Int
   author: UserUpdateOneRequiredInput
 }
 
 input ArticleUpdateManyMutationInput {
   title: String
+  slug: String
+  description: String
+  body: String
+  tagList: ArticleUpdatetagListInput
+  favorited: Boolean
+  favoritesCount: Int
+}
+
+input ArticleUpdatetagListInput {
+  set: [String!]
 }
 
 input ArticleWhereInput {
@@ -100,6 +148,58 @@ input ArticleWhereInput {
   title_not_starts_with: String
   title_ends_with: String
   title_not_ends_with: String
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  body: String
+  body_not: String
+  body_in: [String!]
+  body_not_in: [String!]
+  body_lt: String
+  body_lte: String
+  body_gt: String
+  body_gte: String
+  body_contains: String
+  body_not_contains: String
+  body_starts_with: String
+  body_not_starts_with: String
+  body_ends_with: String
+  body_not_ends_with: String
+  favorited: Boolean
+  favorited_not: Boolean
+  favoritesCount: Int
+  favoritesCount_not: Int
+  favoritesCount_in: [Int!]
+  favoritesCount_not_in: [Int!]
+  favoritesCount_lt: Int
+  favoritesCount_lte: Int
+  favoritesCount_gt: Int
+  favoritesCount_gte: Int
   author: UserWhereInput
   AND: [ArticleWhereInput!]
   OR: [ArticleWhereInput!]

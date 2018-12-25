@@ -21,7 +21,13 @@ const createUser = async (root, args, context) => {
 const createArticle = async (root , args, context) => {
   const userId = getUserId(context)
   return context.prisma.createArticle({
-    title: args.title, 
+    title: args.title,
+    slug: args.slug, 
+    description: args.description,
+    body: args.body,
+    tagList: args.tagList,
+    favorited: false,
+    favoritesCount: 0,
     author: { connect: { id: userId } },
   })
 }

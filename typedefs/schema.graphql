@@ -4,7 +4,15 @@ type Query {
 
 type Mutation {
   createUser(username: String!, password: String!): AuthPayload!
-  createArticle(title: String!): Article!
+  createArticle(
+    title: String!, 
+    slug: String
+    description: String
+    body: String
+    tagList: [String!]
+    favorited: Boolean
+    favoritesCount: Int
+  ): Article!
 }
 
 type User {
@@ -15,6 +23,12 @@ type User {
 type Article {
   id: ID!
   title: String!
+  slug: String
+  description: String
+  body: String
+  tagList: [String!]!
+  favorited: Boolean
+  favoritesCount: Int
   author: User!
 }
 
